@@ -29,9 +29,13 @@ router.get('/:id', async (req, res) => {
     }
 
     const result = await getCustomerDetail(id);
+
+    if (result[0].length === 0) {
+      return res.status(404).json({ message: 'Cliente no encontrado' });
+    }
     res.json({
       customer: result[0][0],
-      purchaseHistory: result[1]
+      purchase_history: result[1]
     });
   } catch (error) {
     console.error('Error al obtener detalle del cliente:', error);

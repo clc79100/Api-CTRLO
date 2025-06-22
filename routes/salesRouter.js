@@ -30,6 +30,10 @@ router.get('/:id', async (req, res) => {
     }
 
     const result = await getSaleDetail(saleId);
+
+    if (result[0].length === 0) {
+      return res.status(404).json({ message: 'Venta no encontrada' });
+    }
     res.json({
       sale: result[0][0],     
       products: result[1]       
@@ -43,13 +47,13 @@ router.get('/:id', async (req, res) => {
 // POST /api/sales
 router.post('/', async (req, res) => {
   try {
-    const { invoiceNumber, saleDate, customerId, productsSold } = req.body;
+    const { saleDate, customerId, productsSold } = req.body;
 
     if (!saleDate || !customerId || !Array.isArray(productsSold)) {
       return res.status(400).json({ message: 'Datos incompletos o inválidos' });
     }
 
-    const result = await insertSale(invoiceNumber || null, saleDate, customerId, productsSold);
+    const result = await insertSale(saleDate, customerId, productsSold);
     res.status(201).json({ message: 'Venta registrada', result });
   } catch (error) {
     console.error('Error al insertar venta:', error);

@@ -1,0 +1,4 @@
+mysql-data
+node_modules
+config/*
+!config/db-connection.js

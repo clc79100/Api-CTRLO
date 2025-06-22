@@ -29,6 +29,11 @@ router.get('/:id', async (req, res) => {
     }
 
     const result = await getProviderDetail(providerId);
+
+    if (result[0].length === 0) {
+      return res.status(404).json({ message: 'Proveedor no encontrado' });
+    }
+
     res.json({
       provider: result[0][0],  
       products: result[1]      

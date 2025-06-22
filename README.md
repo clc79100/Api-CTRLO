@@ -137,12 +137,11 @@ Ejemplo `POST /api/sales`:
 
 ```json
 {
-  "invoiceNumber": 112,
   "saleDate": "2023-10-04",
   "customerId": 1,
   "productsSold": [
-    { "product_id": 1, "product_quantity": 2 },
-    { "product_id": 3, "product_quantity": 1 }
+    { "product_id": 1, "product_quantity": 2, "product_price": 100.00 },
+    { "product_id": 3, "product_quantity": 1, "product_price": 50.00 }
   ]
 }
 ```

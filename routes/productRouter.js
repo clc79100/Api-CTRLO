@@ -5,20 +5,16 @@ import {
   insertProduct,
   updateProduct,
   deleteProduct
-} from '../services/productsService.js';
+} from '../services/productService.js';
 
 const router = express.Router();
 
 // GET /api/products/stock-report?category=1&min=10&max=50
 router.get('/stock-report', async (req, res) => {
   try {
-    const categoryId = parseInt(req.query.category);
+    const categoryId = req.query.category ? parseInt(req.query.category) : null;
     const minStock = req.query.min ? parseInt(req.query.min) : null;
     const maxStock = req.query.max ? parseInt(req.query.max) : null;
-
-    if (!categoryId) {
-      return res.status(400).json({ message: 'category es obligatorio' });
-    }
 
     const result = await getStockReport(categoryId, minStock, maxStock);
     res.json(result[0]);
@@ -37,9 +33,14 @@ router.get('/:id', async (req, res) => {
     }
 
     const result = await getProductDetail(productId);
+
+    if (result[0].length === 0) {
+      return res.status(404).json({ message: 'Producto no encontrado' });
+    }
+
     res.json({
       product: result[0][0],
-      stockBySize: result[1]
+      stock_by_size: result[1]
     });
   } catch (error) {
     console.error('Error en getProductDetail:', error);

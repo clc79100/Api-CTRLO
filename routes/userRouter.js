@@ -31,6 +31,11 @@ router.get('/:id', async (req, res) => {
     }
 
     const result = await getUserDetail(userId);
+
+    if (result[0].length === 0) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+    
     res.json(result[0][0]);
   } catch (error) {
     console.error('Error al obtener detalle del usuario:', error);
