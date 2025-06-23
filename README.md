@@ -103,9 +103,9 @@ Ejemplo `POST /api/users`:
 
 ```json
 {
-  "email": "correo@ejemplo.com",
-  "password": "clave123",
-  "role": "admin"
+  "users_email": "correo@ejemplo.com",
+  "users_password": "clave123",
+  "users_role": "admin"
 }
 ```
 
@@ -137,9 +137,9 @@ Ejemplo `POST /api/sales`:
 
 ```json
 {
-  "saleDate": "2023-10-04",
-  "customerId": 1,
-  "productsSold": [
+  "sale_date": "2023-10-04",
+  "customer_id": 1,
+  "products_sold": [
     { "product_id": 1, "product_quantity": 2, "product_price": 100.00 },
     { "product_id": 3, "product_quantity": 1, "product_price": 50.00 }
   ]
@@ -174,14 +174,14 @@ Ejemplo `POST /api/products`:
 
 ```json
 {
-  "name": "Camisa",
-  "color": "Azul",
-  "price": 19.99,
-  "stockS": 10,
-  "stockM": 5,
-  "stockL": 8,
-  "providerId": 1,
-  "categoryId": 1
+  "product_name": "Camisa",
+  "product_color": "Azul",
+  "product_price": 19.99,
+  "product_stock_S": 10,
+  "product_stock_M": 5,
+  "product_stock_L": 8,
+  "provider_id": 1,
+  "category_id": 1
 }
 ```
 
@@ -200,7 +200,7 @@ Ejemplo `POST /api/categories`:
 
 ```json
 {
-  "name": "Ropa deportiva"
+  "category_name": "Ropa deportiva"
 }
 ```
 

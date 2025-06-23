@@ -47,13 +47,13 @@ router.get('/:id', async (req, res) => {
 // POST /api/providers
 router.post('/', async (req, res) => {
   try {
-    const { name, email, phone } = req.body;
+    const { provider_name, provider_email, provider_phone } = req.body;
 
-    if (!name || !email || !phone) {
+    if (!provider_name || !provider_email || !provider_phone) {
       return res.status(400).json({ message: 'Todos los campos son obligatorios' });
     }
 
-    const result = await insertProvider(name, email, phone);
+    const result = await insertProvider(provider_name, provider_email, provider_phone);
     res.status(201).json({ message: 'Proveedor insertado', result });
   } catch (error) {
     console.error('Error al insertar proveedor:', error);
@@ -65,13 +65,13 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const { name, email, phone } = req.body;
+    const { provider_name, provider_mail, provider_phone } = req.body;
 
-    if (!id || !name || !email || !phone) {
+    if (!id || !provider_name || !provider_mail || !provider_phone) {
       return res.status(400).json({ message: 'Todos los campos son obligatorios' });
     }
 
-    const result = await updateProvider(id, name, email, phone);
+    const result = await updateProvider(id, provider_name, provider_mail, provider_phone);
     res.json({ message: 'Proveedor actualizado', result });
   } catch (error) {
     console.error('Error al actualizar proveedor:', error);

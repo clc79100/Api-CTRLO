@@ -52,16 +52,16 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const {
-      name, color, price,
-      stockS, stockM, stockL,
-      providerId, categoryId
+      product_name, product_color, product_price,
+      product_stock_S, product_stock_M, product_stock_L,
+      provider_id, category_id
     } = req.body;
 
-    if (!name || !color || price == null || !providerId || !categoryId) {
+    if (!product_name || !product_color || product_price == null || !provider_id || !category_id) {
       return res.status(400).json({ message: 'Faltan datos obligatorios' });
     }
 
-    const result = await insertProduct(name, color, price, stockS, stockM, stockL, providerId, categoryId);
+    const result = await insertProduct(product_name, product_color, product_price, product_stock_S, product_stock_M, product_stock_L, provider_id, category_id);
     res.status(201).json({ message: 'Producto insertado', result });
   } catch (error) {
     console.error('Error en insertProduct:', error);
@@ -74,16 +74,16 @@ router.put('/:id', async (req, res) => {
   try {
     const code = parseInt(req.params.id);
     const {
-      name, color, price,
-      stockS, stockM, stockL,
-      providerId, categoryId
+      product_name, product_color, product_price,
+      product_stock_S, product_stock_M, product_stock_L,
+      provider_id, category_id
     } = req.body;
 
-    if (!code || !name || !color || price == null || !providerId || !categoryId) {
+    if (!code || !product_name || !product_color || product_price == null || !provider_id || !category_id) {
       return res.status(400).json({ message: 'Faltan datos obligatorios' });
     }
 
-    const result = await updateProduct(code, name, color, price, stockS, stockM, stockL, providerId, categoryId);
+    const result = await updateProduct(code, product_name, product_color, product_price, product_stock_S, product_stock_M, product_stock_L, provider_id, category_id);
     res.json({ message: 'Producto actualizado', result });
   } catch (error) {
     console.error('Error en updateProduct:', error);

@@ -46,12 +46,12 @@ router.get('/:id', async (req, res) => {
 // POST /api/customers
 router.post('/', async (req, res) => {
   try {
-    const { name } = req.body;
-    if (!name) {
+    const { customer_name } = req.body;
+    if (!customer_name) {
       return res.status(400).json({ message: 'El nombre es obligatorio' });
     }
 
-    const result = await insertCustomer(name);
+    const result = await insertCustomer(customer_name);
     res.status(201).json({ message: 'Cliente insertado', result });
   } catch (error) {
     console.error('Error al insertar cliente:', error);
@@ -63,13 +63,13 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const { name } = req.body;
+    const { costumer_name } = req.body;
 
-    if (!id || !name) {
+    if (!id || !costumer_name) {
       return res.status(400).json({ message: 'ID y nombre son obligatorios' });
     }
 
-    const result = await updateCustomer(id, name);
+    const result = await updateCustomer(id, costumer_name);
     res.json({ message: 'Cliente actualizado', result });
   } catch (error) {
     console.error('Error al actualizar cliente:', error);

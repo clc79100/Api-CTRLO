@@ -46,13 +46,13 @@ router.get('/:id', async (req, res) => {
 // POST /api/users
 router.post('/', async (req, res) => {
   try {
-    const { email, password, role } = req.body;
+    const { user_mail, user_password, user_role } = req.body;
 
-    if (!email || !password || !role) {
+    if (!user_mail || !user_password || !user_role) {
       return res.status(400).json({ message: 'Todos los campos son obligatorios' });
     }
 
-    const result = await insertUser(email, password, role);
+    const result = await insertUser(user_mail, user_password, user_role);
     res.status(201).json({ message: 'Usuario insertado', result });
   } catch (error) {
     console.error('Error al insertar usuario:', error);
@@ -64,13 +64,13 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const { email, password, role } = req.body;
+    const { user_mail, user_password, user_role } = req.body;
 
-    if (!id || !email || !password || !role) {
+    if (!id || !user_mail || !user_password || !user_role) {
       return res.status(400).json({ message: 'Todos los campos son obligatorios' });
     }
 
-    const result = await updateUser(id, email, password, role);
+    const result = await updateUser(id, user_mail, user_password, user_role);
     res.json({ message: 'Usuario actualizado', result });
   } catch (error) {
     console.error('Error al actualizar usuario:', error);

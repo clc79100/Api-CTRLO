@@ -47,13 +47,13 @@ router.get('/:id', async (req, res) => {
 // POST /api/sales
 router.post('/', async (req, res) => {
   try {
-    const { saleDate, customerId, productsSold } = req.body;
+    const { sale_date, customer_id, products_sold } = req.body;
 
-    if (!saleDate || !customerId || !Array.isArray(productsSold)) {
+    if (!sale_date || !customer_id || !Array.isArray(products_sold)) {
       return res.status(400).json({ message: 'Datos incompletos o inválidos' });
     }
 
-    const result = await insertSale(saleDate, customerId, productsSold);
+    const result = await insertSale(sale_date, customer_id, products_sold);
     res.status(201).json({ message: 'Venta registrada', result });
   } catch (error) {
     console.error('Error al insertar venta:', error);

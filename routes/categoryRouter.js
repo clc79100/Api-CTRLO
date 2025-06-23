@@ -22,11 +22,11 @@ router.get('/', async (req, res) => {
 // POST /api/categories
 router.post('/', async (req, res) => {
   try {
-    const { name } = req.body;
-    if (!name) {
+    const { category_name } = req.body;
+    if (!category_name) {
       return res.status(400).json({ message: 'El nombre es obligatorio' });
     }
-    const result = await insertCategory(name);
+    const result = await insertCategory(category_name);
     res.status(201).json({ message: 'Categoría insertada', result });
   } catch (error) {
     console.error('Error al insertar categoría:', error);

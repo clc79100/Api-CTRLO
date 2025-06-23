@@ -10,12 +10,12 @@ export async function getSaleDetail(saleId) {
   return await executeQuery(sql, [saleId]);
 }
 
-export async function insertSale(saleDate, customerId, productsSold) {
+export async function insertSale(sale_date, customer_id, products_sold) {
   const sql = 'CALL sp_Insert_Sale(?, ?, ?)';
 
-  const productsJSON = JSON.stringify(productsSold);
+  const productsJSON = JSON.stringify(products_sold);
 
-  return await executeQuery(sql, [saleDate, customerId, productsJSON]);
+  return await executeQuery(sql, [sale_date, customer_id, productsJSON]);
 }
 
 export async function deleteSale(saleId) {
