@@ -47,13 +47,13 @@ router.get('/:id', async (req, res) => {
 // POST /api/providers
 router.post('/', async (req, res) => {
   try {
-    const { provider_name, provider_email, provider_phone } = req.body;
+    const { provider_name, provider_mail, provider_phone } = req.body;
 
-    if (!provider_name || !provider_email || !provider_phone) {
+    if (!provider_name || !provider_mail || !provider_phone) {
       return res.status(400).json({ message: 'Todos los campos son obligatorios' });
     }
 
-    const result = await insertProvider(provider_name, provider_email, provider_phone);
+    const result = await insertProvider(provider_name, provider_mail, provider_phone);
     res.status(201).json({ message: 'Proveedor insertado', result });
   } catch (error) {
     console.error('Error al insertar proveedor:', error);
