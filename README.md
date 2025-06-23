@@ -121,6 +121,13 @@ Ejemplo `POST /api/users`:
 | PUT    | /api/customers/\:id | Actualizar nombre        |
 | DELETE | /api/customers/\:id | Eliminar cliente         |
 
+Ejemplo `POST /api/customers`:
+
+```json
+{
+  "customer_name": "Juan Pérez"
+}
+```
 ---
 
 ### Ventas
@@ -133,9 +140,9 @@ Ejemplo `POST /api/users`:
 | POST   | /api/sales                           | Registrar venta     |
 | DELETE | /api/sales/\:id                      | Eliminar venta      |
 
-Ejemplo `POST /api/sales`:
+  Ejemplo `POST /api/sales`:
 
-```json
+  ```json
 {
   "sale_date": "2023-10-04",
   "customer_id": 1,
